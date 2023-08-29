@@ -29,7 +29,7 @@ const Blogpage = () => {
      
      {/* blog cards section */}
       <div className='pt-lg-5 px-lg-5 mx-lg-5'>
-      <Row xs={1} md={2} lg={2} className="px-xl-5 crow mx-lg-5 mx-4 mt-5">
+      <Row xs={1} md={2} lg={2} className="px-xl-5 crow mx-lg-5 g-4 mx-4 mt-5">
         {blogimgs.map((item, i) => (
           <Col key={i} className="justify-content-center ccol">
            
@@ -50,9 +50,9 @@ const Blogpage = () => {
                 </Card.Text>
 
      
-                <div className='bg-white rounded-4  overlay-container mb-5 pb-5mb-lg-2 pb-lg-2' 
+                <div className='rounded-4 px-2 px-lg-2  px-xl-5 overlay-container mb-5  mb-lg-2 pb-lg-2' 
               >
-                   <div className='rounded-4  p-3  ' style={{boxShadow:" 0px 20px 35px 0px rgba(167, 167, 167, 0.25)"}}>
+                   <div className='rounded-4  p-3 bg-white  ' style={{boxShadow:" 0px 20px 35px 0px rgba(167, 167, 167, 0.25)"}}>
                 <Card.Text><FaUserAlt style={{color:"#7EB693"}} />{item.cname}</Card.Text>
                 <Card.Text >{item.caption1}</Card.Text>
                 <Card.Text >{item.caption2}</Card.Text>
