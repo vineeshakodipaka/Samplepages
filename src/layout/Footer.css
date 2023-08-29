@@ -1,0 +1,33 @@
+/* Apply a border to the right side */
+.footercls .custom-border {
+    border-right: 1px solid #dee2e6; /* You can adjust the border style and color */
+  }
+  /* Apply a border to the right side */
+.footercls .custom-border2 {
+    border-left: 1px solid #dee2e6; /* You can adjust the border style and color */
+
+  }
+  .footercls h3{
+color: #8F3300;
+font-family: 'Roboto';
+font-weight: 700;
+
+  }
+.footercls p{
+    color: #000;
+    font-family: 'Open Sans';
+    font-weight: 400;
+    line-height: 165.4%; /* 29.772px */
+    
+}
+  
+  /* Hide the border on small screens */
+  @media (max-width: 767.98px) {
+    .footercls .custom-border {
+      border-right: none;
+    }
+    .footercls .custom-border2 {
+        border-left: none;
+      }
+  }
+  
