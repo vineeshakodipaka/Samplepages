@@ -238,9 +238,13 @@ const Navbar = () => {
                 {/* <span className="badge rounded-pill badge-notification bg-primary">{totalQuantity}</span> */}
               </Link>
             </li>
+          </ul>
+        </div>
+        <div>
+          <ul className="navbar-nav ms-xl-5 ">
             <li className="nav-item px-xl-2">
-              <Link to="/shoppage" className="nav-link">
-                Shop
+              <Link to="/login" className="nav-link">
+                Login
               </Link>
             </li>
           </ul>

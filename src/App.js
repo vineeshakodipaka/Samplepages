@@ -18,6 +18,8 @@ import SingleCardPage from "./components/Shoppages/SingleCardPage";
 import Singleblog from "./components/Blog/Singleblog";
 import MainShop from "./components/Shoppages/MainShop";
 import NewBrandspage from "./components/Brandspage/NewBrandspage";
+import Login from "./components/Login&signup/Login";
+import Signup from "./components/Login&signup/Signup";
 
 const App = () => {
   return (
@@ -37,6 +39,8 @@ const App = () => {
         <Route path="/singlecardpage/:cardId" element={<SingleCardPage />} />
         <Route path="/brands" element={<NewBrandspage />} />
         <Route path="/shoppage" element={<MainShop />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
       <Bottombar />
       <Footer />
