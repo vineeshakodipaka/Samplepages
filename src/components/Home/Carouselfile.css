@@ -45,6 +45,24 @@
     bottom: 50%;
     transform: translateY(-50%);
   }
-
+/* For large screens */
   
-  
+@media (min-width: 767px){
+  .homecarousel .carousel-caption h5{
+    font-size: 50px;
+  }
+    .homecarousel .carouselimg {
+      height: 550px !important;
+    }
+     
+}
+ .homecarousel .carousel-caption {
+  bottom: 1.25rem;
+  color: #fff;
+  left: 15%;
+  padding-bottom: 1.25rem;
+  padding-top: 1.25rem;
+  position: absolute;
+  right: 15%;
+  text-align: center;
+}

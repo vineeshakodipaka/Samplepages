@@ -13,3 +13,14 @@
   box-shadow: none;
   outline: none;
   }
+.headerbar input, .headerbar input:focus {
+      background-color: #ffd2bc;
+    }
+.headerbar input,.headerbar input:focus {
+   border: none;
+    }
+.headerbar .basic-nav-dropdown .dropdown button {
+  background-color: initial !important;
+  border: none !important;
+  color: #000 !important;
+}

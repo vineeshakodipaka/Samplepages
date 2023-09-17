@@ -1,31 +1,37 @@
-.aboutcls h4{
+/* CSS for About component */
+
+/* Header section styles */
+.aboutcls h4 {
     color: #8F3300;
     font-family: Yellowtail;
     font-weight: 400;
-
 }
-.aboutcls h3{
+
+.aboutcls h3 {
     color: #000;
     font-family: Roboto;
     font-weight: 800;
-    
 }
-.aboutcls p{
+
+.aboutcls p {
     color: #3F4040;
     font-family: Open Sans;
     font-weight: 400;
-    line-height: 165.4%; /* 29.772px */
+    line-height: 165.4%;
+    /* 29.772px */
 }
-  /* 2nd row */
-.aboutcls .whychoosediv p{
-color: #B27B60;
-font-family: Open Sans;
-font-weight: 400;
-line-height: 165.4%; /* 29.772px */
-}
-.aboutcls span{
-color: #000 !important;
-font-family: Roboto;
-font-weight: 500;
 
+/* Styles for the second row */
+.aboutcls .whychoosediv p {
+    color: #B27B60;
+    font-family: Open Sans;
+    font-weight: 400;
+    line-height: 165.4%;
+    /* 29.772px */
+}
+
+.aboutcls span {
+    color: #000 !important;
+    font-family: Roboto;
+    font-weight: 500;
 }

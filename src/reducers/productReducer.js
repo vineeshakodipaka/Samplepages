@@ -6,7 +6,7 @@ import {
   FETCH_PRODUCTS_FAILURE,
   ADD_TO_CART,
   SEARCH_PRODUCTS,
-} from '../actions';
+} from "../actions";
 
 const initialState = {
   products: [], // Ensure products is initialized as an empty array
@@ -43,15 +43,15 @@ const productReducer = (state = initialState, action) => {
       };
     case SEARCH_PRODUCTS:
       const searchQuery = action.payload.toLowerCase();
-      console.log('Search Query:', action.payload);
-      if (searchQuery.trim() === '') {
+      console.log("Search Query:", action.payload);
+      if (searchQuery.trim() === "") {
         return {
           ...state,
           filteredProducts: state.products, // Reset the filteredProducts to the full product list
         };
       } else {
-        const filteredProducts = state.products.filter(product =>
-          product.title.toLowerCase().includes(searchQuery)
+        const filteredProducts = state.products.filter((product) =>
+          product.name.toLowerCase().includes(searchQuery)
         );
         return {
           ...state,

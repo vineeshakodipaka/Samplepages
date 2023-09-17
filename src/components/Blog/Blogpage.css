@@ -13,7 +13,16 @@
  
    
   }
- 
+.blogcls .c-2 {
+    color: #525c60;
+    font-family: Open Sans;
+    font-weight: 400;
+    line-height: 165.4%;
+}
+ .blogcls .cname,.blogcls .c-1,.blogcls .readmore {
+     color: #652700;
+     font-family: Roboto;
+ }
   @media only screen and (max-width: 378px) {
     .blogcls .ccol
     {
