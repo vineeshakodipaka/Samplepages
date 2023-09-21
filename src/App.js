@@ -20,6 +20,9 @@ import MainShop from "./components/Shoppages/MainShop";
 import NewBrandspage from "./components/Brandspage/NewBrandspage";
 import Login from "./components/Login&signup/Login";
 import Signup from "./components/Login&signup/Signup";
+import SubcategoryDetails from "./components/Brandspage/SubcategoryDetails";
+import BrandDetails from "./components/Brandspage/BrandDetails";
+import Subcatdropdown from "./components/Brandspage/Subcatdropdown";
 
 const App = () => {
   return (
@@ -37,10 +40,19 @@ const App = () => {
         <Route path="/singleproductpage" element={<Singleshoppage />} />
         <Route path="/search-results" element={<Shoppage />} />
         <Route path="/singlecardpage/:cardId" element={<SingleCardPage />} />
-        <Route path="/brands" element={<NewBrandspage />} />
+        <Route path="/brandspage" element={<NewBrandspage />} />
         <Route path="/shoppage" element={<MainShop />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/brands/:brandId" element={<BrandDetails />} />
+        <Route
+          path="/subcategories/:subcatId"
+          element={<SubcategoryDetails />}
+        />
+        <Route
+          path="/subcatdropdown/:subcatdrop"
+          element={<Subcatdropdown />}
+        />
       </Routes>
       <Bottombar />
       <Footer />

@@ -5,7 +5,7 @@ const cartReducer = (
   switch (action.type) {
     case "ADD_TO_CART":
       const existingProduct = state.items.find(
-        (item) => item.id === action.payload.id
+        (item) => item.Product_id === action.payload.Product_id
       );
       if (existingProduct) {
         existingProduct.quantity += 1;
@@ -18,7 +18,9 @@ const cartReducer = (
       const totalPrice = state.items.reduce((total, item) => {
         return (
           total +
-          parseFloat(item.offerPrice.replace("₹", "").replace(",", "")) *
+          parseFloat(
+            item.Product_offerPrice.replace("₹", "").replace(",", "")
+          ) *
             item.quantity
         );
       }, 0);
@@ -31,7 +33,7 @@ const cartReducer = (
 
     case "INCREMENT_QUANTITY":
       const itemToIncrement = state.items.find(
-        (item) => item.id === action.payload
+        (item) => item.Product_id === action.payload
       );
       if (itemToIncrement) {
         itemToIncrement.quantity += 1;
@@ -40,7 +42,9 @@ const cartReducer = (
         const updatedTotalPrice = state.items.reduce((total, item) => {
           return (
             total +
-            parseFloat(item.offerPrice.replace("₹", "").replace(",", "")) *
+            parseFloat(
+              item.Product_offerPrice.replace("₹", "").replace(",", "")
+            ) *
               item.quantity
           );
         }, 0);
@@ -55,7 +59,7 @@ const cartReducer = (
 
     case "DECREMENT_QUANTITY":
       const itemToDecrement = state.items.find(
-        (item) => item.id === action.payload
+        (item) => item.Product_id === action.payload
       );
       if (itemToDecrement && itemToDecrement.quantity > 0) {
         itemToDecrement.quantity -= 1;
@@ -64,7 +68,9 @@ const cartReducer = (
         const updatedTotalPrice = state.items.reduce((total, item) => {
           return (
             total +
-            parseFloat(item.offerPrice.replace("₹", "").replace(",", "")) *
+            parseFloat(
+              item.Product_offerPrice.replace("₹", "").replace(",", "")
+            ) *
               item.quantity
           );
         }, 0);
@@ -79,7 +85,7 @@ const cartReducer = (
 
     case "REMOVE_FROM_CART":
       const updatedItems = state.items.filter(
-        (item) => item.id !== action.payload
+        (item) => item.Product_id !== action.payload
       );
 
       // Recalculate the total price and total quantity
@@ -87,7 +93,9 @@ const cartReducer = (
         (total, item) => {
           return (
             total +
-            parseFloat(item.offerPrice.replace("₹", "").replace(",", "")) *
+            parseFloat(
+              item.Product_offerPrice.replace("₹", "").replace(",", "")
+            ) *
               item.quantity
           );
         },

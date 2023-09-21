@@ -138,12 +138,12 @@ const Shopcardslide = ({ searchQuery }) => {
           <Slider {...settings}>
             {searchQuery !== "" && // Only render when there's a search query
               products.map((product, i) => (
-                <Col key={i}>
+                <Col key={product.Product_id}>
                   <Card className="rounded-5 pt-1 pb-1 shopcards mx-2 mb-2">
                     <Card.Body>
                       <div className="position-relative">
                         {/* Display "Sale" button if the product is on sale */}
-                        {product.hasSale && (
+                        {product.isFeatured && (
                           <button
                             className="sale-button rounded-3 p-2"
                             style={{
@@ -163,7 +163,7 @@ const Shopcardslide = ({ searchQuery }) => {
                           <div className="cardimg">
                             <Card.Img
                               className="rounded-3 p-4 mt-3 prdctimg"
-                              src={product.img}
+                              src={product.Product_img}
                               alt={`Image ${i + 1}`}
                               style={{ width: "100%", height: "250px" }}
                             />
@@ -173,7 +173,7 @@ const Shopcardslide = ({ searchQuery }) => {
                             style={{ height: "50px" }}
                           >
                             <h5 style={{ lineHeight: "1.2" }}>
-                              {product.name}
+                              {product.Product_name}
                             </h5>
                           </Card.Text>
                         </Row>
@@ -189,11 +189,11 @@ const Shopcardslide = ({ searchQuery }) => {
                                   className="fw-normal"
                                   style={{ color: "#B8B8B8" }}
                                 >
-                                  <s>{product.originalPrice}</s>
+                                  <s>₹{product.Product_originalPrice}</s>
                                 </span>
                                 <span className="fw-bold">
                                   {" "}
-                                  {product.offerPrice}
+                                  ₹{product.Product_offerPrice}
                                 </span>
                               </p>
                             </Card.Text>

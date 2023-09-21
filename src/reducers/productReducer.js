@@ -51,7 +51,7 @@ const productReducer = (state = initialState, action) => {
         };
       } else {
         const filteredProducts = state.products.filter((product) =>
-          product.name.toLowerCase().includes(searchQuery)
+          product.Product_name.toLowerCase().includes(searchQuery)
         );
         return {
           ...state,

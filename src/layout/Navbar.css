@@ -3,7 +3,19 @@
     color: #652700;
     font-family: 'Roboto';
     font-weight: 500;
+        /* display: flex; */
   }
+/* .headerbar .navbar-nav .dropdown-toggle::after{
+margin-top: 9px;
+} */
+.headerbar .navbar-nav .navdropdownbrandname .navdroplink {
+    color: black;
+      font-family: auto;
+      font-weight: 400;
+    
+}
+
+
  .navbar .navbrand{
     color: #652700;
     font-family: 'Roboto';

@@ -2,13 +2,21 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineSearch, AiOutlineShoppingCart } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchProducts, searchProducts } from "../actions";
+import {
+  fetchProducts,
+  searchProducts,
+  fetchBrands, // Import the fetchBrands action
+  setSelectedBrand, // Import the setSelectedBrand action
+  setSelectedSubcat, // Import the setSelectedSubcat action
+} from "../actions";
+
 import "./Navbar.css";
 import {
   NavDropdown,
   Dropdown,
   DropdownButton,
   ButtonGroup,
+  Button,
 } from "react-bootstrap";
 const Navbar = () => {
   const { totalQuantity } = useSelector((state) => state.cart);
@@ -16,26 +24,50 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchExpanded, setSearchExpanded] = useState(false);
 
-  const [brandsData, setBrandsData] = useState([]);
-  const [selectedBrand, setSelectedBrand] = useState("");
-  const [selectedSubcat, setSelectedSubcat] = useState("");
+  // const [brandsData, setBrandsData] = useState([]);
+  // const [selectedBrand, setSelectedBrand] = useState("");
+  // const [selectedSubcat, setSelectedSubcat] = useState("");
   const [isBrandDropdownOpen, setIsBrandDropdownOpen] = useState(false); // Track brand dropdown state
   const searchInputRef = React.useRef(null); // Reference to the search input element
   const navigate = useNavigate();
+  // useEffect(() => {
+  //   // Fetch brand data from the API
+  //   fetch("https://paradox122.000webhostapp.com/_API/Brands.php")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       if (data.status) {
+  //         setBrandsData(data.brands);
+  //       }
+  //     })
+  //     .catch((error) => console.error("Error fetching data:", error));
+  // }, []);
+
+  // const handleBrandChange = (brand) => {
+  //   setSelectedBrand(brand.Brand_id);
+  //   setSelectedSubcat(""); // Clear sub-category when a brand is changed
+  // };
+  // const handleSubcatChange = (subcat) => {
+  //   setSelectedSubcat(subcat.Subcat_Name);
+  // };
+
+  const brandsData = useSelector((state) => state.brands.brandsData);
+  const selectedBrand = useSelector((state) => state.brands.selectedBrand);
+  const selectedSubcat = useSelector((state) => state.brands.selectedSubcat);
+
   useEffect(() => {
     // Fetch brand data from the API
-    fetch("https://64c37c1ceb7fd5d6ebd0ebc4.mockapi.io/brands")
-      .then((response) => response.json())
-      .then((data) => setBrandsData(data))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+    dispatch(fetchBrands());
+  }, [dispatch]);
 
   const handleBrandChange = (brand) => {
-    setSelectedBrand(brand.Brand_id);
-    setSelectedSubcat(""); // Clear sub-category when a brand is changed
+    dispatch(setSelectedBrand(brand.Brand_id));
+    navigate(`/brands/${brand.Brand_id}`); // Navigate to brand details
   };
+
   const handleSubcatChange = (subcat) => {
-    setSelectedSubcat(subcat.Subcat_Name);
+    const subcatId = subcat.Subcat_id;
+    // Use the useNavigate hook to navigate to the subcategory details page
+    navigate(`/subcategories/${subcatId}`);
   };
 
   const handleSearch = (e) => {
@@ -77,7 +109,7 @@ const Navbar = () => {
 
   //handleclick for moving brands page
   const handlclick = () => {
-    navigate("/brands");
+    navigate("/brandspage");
   };
 
   // const handleSearch = () => {
@@ -136,36 +168,55 @@ const Navbar = () => {
             </li>
 
             <NavDropdown
-              title="Brands"
+              title={<span onClick={handlclick}>Brands</span>}
+              // title="Brands"
               className="basic-nav-dropdown"
-              onClick={handlclick}
+              // onClick={handlclick}
               id="basic-nav-dropdown"
               show={isBrandDropdownOpen}
               onMouseEnter={() => setIsBrandDropdownOpen(true)}
               onMouseLeave={() => setIsBrandDropdownOpen(false)}
             >
+              {/* <NavDropdown.Item as={Link} to="/brandspage">
+                All Brands
+              </NavDropdown.Item> */}
               {brandsData.map((brand) => (
                 <div key={brand.Brand_id}>
                   {brand.hasSubcat ? (
                     <DropdownButton
                       as={ButtonGroup}
-                      className="transparent-bg navdropdownbrandname" // Add a class to make the background transparent
+                      className="transparent-bg navdropdownbrandname"
                       id={`dropdown-brand-${brand.Brand_id}`}
-                      title={brand.Brand_Name}
-                      onSelect={() => handleBrandChange(brand)}
+                      title={
+                        <span onClick={() => handleBrandChange(brand)}>
+                          {brand.Brand_Name}
+                        </span>
+                      }
                     >
-                      {brand.Subcat_Names.map((subcat) => (
-                        <Dropdown.Item
-                          key={subcat.Subcat_Name}
-                          eventKey={subcat.Subcat_Name}
-                          onSelect={() => handleSubcatChange(subcat)}
-                        >
-                          {subcat.Subcat_Name}
-                        </Dropdown.Item>
-                      ))}
+                      {brand.subcategories.map((subcat) => {
+                        if (subcat && subcat.Subcat_id) {
+                          return (
+                            <Dropdown.Item
+                              key={subcat.Subcat_id}
+                              eventKey={subcat.Subcat_id}
+
+                              // onSelect={() => handleSubcatChange(subcat)} // Pass the entire subcat object
+                            >
+                              <Link
+                                to={`/subcategories/${subcat.Subcat_id}`}
+                                className="nav-link navdroplink"
+                              >
+                                {subcat.Subcat_Name}
+                              </Link>
+                            </Dropdown.Item>
+                          );
+                        } else {
+                          return null; // Skip rendering if subcat or Subcat_id is undefined
+                        }
+                      })}
                     </DropdownButton>
                   ) : (
-                    <NavDropdown.Item onClick={() => handleSubcatChange(brand)}>
+                    <NavDropdown.Item onClick={() => handleBrandChange(brand)}>
                       {brand.Brand_Name}
                     </NavDropdown.Item>
                   )}
@@ -241,7 +292,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div>
-          <ul className="navbar-nav ms-xl-5 ">
+          <ul className="navbar-nav ms-xl-3 ">
             <li className="nav-item px-xl-2">
               <Link to="/login" className="nav-link">
                 Login

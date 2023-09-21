@@ -19,7 +19,7 @@ const Cart = () => {
   const handleDecrementQuantity = (productId) => {
     dispatch(decrementQuantity(productId));
 
-    const item = cartItems.find((item) => item.id === productId);
+    const item = cartItems.find((item) => item.Product_id === productId);
     if (item && item.quantity === 0) {
       dispatch(removeFromCart(productId));
     }
@@ -39,12 +39,12 @@ const Cart = () => {
             className="g-4 cardsrow pb-md-5 mb-md-5  px-md-4 mx-md-5"
           >
             {cartItems.map((product, i) => (
-              <Col key={product.i}>
+              <Col key={product.Product_id}>
                 <Card className="rounded-5 pt-1 pb-1 shopcards">
                   <Card.Body>
                     <div className="position-relative">
                       {/* Display "Sale" button if the product is on sale */}
-                      {product.hasSale && (
+                      {product.isFeatured && (
                         <button
                           className="sale-button rounded-3 p-2"
                           style={{
@@ -64,7 +64,7 @@ const Cart = () => {
                         <div className="cardimg">
                           <Card.Img
                             className="rounded-3 p-4 mt-3 prdctimg"
-                            src={product.img}
+                            src={product.Product_img}
                             alt={`Image ${i + 1}`}
                             style={{ width: "100%", height: "250px" }}
                           />
@@ -73,7 +73,9 @@ const Cart = () => {
                           className="text-center"
                           style={{ height: "50px" }}
                         >
-                          <h5 style={{ lineHeight: "1.2" }}>{product.name}</h5>
+                          <h5 style={{ lineHeight: "1.2" }}>
+                            {product.Product_name}
+                          </h5>
                         </Card.Text>
                       </Row>
                       <div className="px-3">
@@ -88,11 +90,11 @@ const Cart = () => {
                                 className="fw-normal"
                                 style={{ color: "#B8B8B8" }}
                               >
-                                <s>{product.originalPrice}</s>
+                                <s>{product.Product_originalPrice}</s>
                               </span>
                               <span className="fw-bold">
                                 {" "}
-                                {product.offerPrice}
+                                {product.Product_offerPrice}
                               </span>
                             </p>
                           </Card.Text>
@@ -103,7 +105,7 @@ const Cart = () => {
                             <button
                               style={{ border: "none" }}
                               onClick={() =>
-                                handleDecrementQuantity(product.id)
+                                handleDecrementQuantity(product.Product_id)
                               }
                             >
                               -
@@ -112,7 +114,7 @@ const Cart = () => {
                             <button
                               style={{ border: "none" }}
                               onClick={() =>
-                                handleIncrementQuantity(product.id)
+                                handleIncrementQuantity(product.Product_id)
                               }
                             >
                               +
