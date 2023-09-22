@@ -13,7 +13,6 @@ const Signup = () => {
     email: "",
     phone: "",
   });
-
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -24,23 +23,31 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const headers = {
-      "Content-Type": "application/json",
+    // Create a FormData object and append the form fields
+    const formdata = new FormData();
+    formdata.append("username", formData.username);
+    formdata.append("password", formData.password);
+    formdata.append("email", formData.email);
+    formdata.append("phone", formData.phone);
+
+    const requestOptions = {
+      method: "POST",
+      body: formdata,
+      redirect: "follow",
     };
 
     try {
-      const response = await axios.post(
+      const response = await fetch(
         "https://paradox122.000webhostapp.com/_API/Signup.php",
-        JSON.stringify(formData),
-        { headers }
+        requestOptions
       );
 
-      if (response.data.status === true) {
+      if (response.ok) {
         // Signup successful, redirect to the login page
         navigate("/login");
       } else {
         // Signup failed, display an error message to the user
-        alert(response.data.message);
+        alert("Signup failed. Please try again.");
       }
     } catch (error) {
       console.error("Signup failed", error);
@@ -48,6 +55,9 @@ const Signup = () => {
       alert("Signup failed. Please try again later.");
     }
   };
+
+
+  
   return (
     <div className="signupcls text-center">
       <h3 className="fs-2 elite mt-5">Elite</h3>

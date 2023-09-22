@@ -1,6 +1,6 @@
 // src/App.js
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Cart from "./components/Cart";
 import "./App.css";
 import Navbar from "./layout/Navbar";
@@ -23,8 +23,11 @@ import Signup from "./components/Login&signup/Signup";
 import SubcategoryDetails from "./components/Brandspage/SubcategoryDetails";
 import BrandDetails from "./components/Brandspage/BrandDetails";
 import Subcatdropdown from "./components/Brandspage/Subcatdropdown";
-
+import { useAuth } from './AuthContext '; // Import the AuthProvider from your context file
 const App = () => {
+  const { isAuthenticated } = useAuth(); // Access authentication status
+
+
   return (
     <div className="app">
       <Navbar />
@@ -34,7 +37,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/team" element={<Teampage />} />
-        <Route path="/blog" element={<Blogpage />} />
+        {/* <Route path="/blog" element={<Blogpage />} /> */}
         <Route path="/singleblog" element={<Singleblog />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/singleproductpage" element={<Singleshoppage />} />
@@ -53,6 +56,16 @@ const App = () => {
           path="/subcatdropdown/:subcatdrop"
           element={<Subcatdropdown />}
         />
+
+
+        {isAuthenticated ? ( // Render the /blog route only if authenticated
+          <Route path="/blog" element={<Blogpage />} />
+        ) : (
+          // Redirect to the home page if not authenticated
+          <Route path="/blog" element={<Navigate to="/" replace />} />
+        )}
+
+
       </Routes>
       <Bottombar />
       <Footer />
