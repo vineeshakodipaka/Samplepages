@@ -152,9 +152,6 @@ const NewBrandspage = () => {
 
 export default NewBrandspage;
 
-
-
-
 // //only brands names
 // import React, { useEffect } from "react";
 // import { useSelector, useDispatch } from "react-redux";

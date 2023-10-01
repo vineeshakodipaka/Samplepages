@@ -4,6 +4,7 @@ import { Container, Row } from "react-bootstrap";
 
 import { useNavigate } from "react-router-dom";
 import Shopcardslide from "../Shoppages/Shopcardslide";
+import Shopcardslide2 from "../Shoppages/Shopcardslide2";
 
 const Ourproducts = () => {
   const navigate = useNavigate(); // React Router's useNavigate hook for navigation
@@ -35,7 +36,7 @@ const Ourproducts = () => {
       </div>
 
       {/* Render the Shoppage component for new arrivals */}
-      <Shopcardslide />
+      <Shopcardslide2 />
 
       {/* Button to learn more about new arrivals */}
       {/* <center>

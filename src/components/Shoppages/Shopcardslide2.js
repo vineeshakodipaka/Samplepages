@@ -10,7 +10,7 @@
 // import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 // import "./Shopcardslide.css";
 
-// const Shopcardslide = ({ searchQuery }) => {
+// const Shopcardslide2 = ({ searchQuery }) => {
 //   const navigate = useNavigate();
 //   const dispatch = useDispatch();
 //   const products = useSelector((state) => state.products.filteredProducts);
@@ -137,10 +137,9 @@
 //           <Slider {...settings}>
 //             {searchQuery !== "" && // Only render when there's a search query
 //               products.map((product, i) => (
-//                 <div key={i}>
-//                   {product.isFeatured && (
-                    
-//                     <Card  className="rounded-5 pt-1 pb-1 shopcards mx-2 mb-2">
+//                 <Col>
+//                   {product.isNew && (
+//                     <Card className="rounded-5 pt-1 pb-1 shopcards mx-2 mb-2">
 //                       <Card.Body>
 //                         <div className="position-relative">
 //                           {/* Display "Sale" button if the product is on sale */}
@@ -221,7 +220,7 @@
 //                       </Card.Body>
 //                     </Card>
 //                   )}
-//                 </div>
+//                 </Col>
 //               ))}
 //           </Slider>
 //         </Row>
@@ -246,13 +245,7 @@
 //   );
 // };
 
-// export default Shopcardslide;
-
-
-
-
-
-
+// export default Shopcardslide2;
 
 import React, { useState, useEffect } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
@@ -266,7 +259,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import "./Shopcardslide.css";
 
-const Shopcardslide = ({ searchQuery }) => {
+const Shopcardslide2 = ({ searchQuery }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.filteredProducts);
@@ -386,7 +379,7 @@ const Shopcardslide = ({ searchQuery }) => {
   };
 
   // Filter the products to include only featured products
-  const featuredProducts = products.filter((product) => product.isFeatured);
+  const featuredProducts = products.filter((product) => product.isNew);
 
   return (
     <div className="shopcardslidecls">
@@ -502,4 +495,4 @@ const Shopcardslide = ({ searchQuery }) => {
   );
 };
 
-export default Shopcardslide;
+export default Shopcardslide2;

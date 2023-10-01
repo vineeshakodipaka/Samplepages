@@ -64,7 +64,7 @@ const Shoppage = ({ searchQuery }) => {
           md={2}
           lg={3}
           xl={4}
-          className="g-4 cardsrow pb-md-5 py-md-3 mb-md-5 pt-5 px-md-4 mx-md-5"
+          className="g-4 cardsrow  pb-md-5 py-md-3 mb-md-5 pt-5"
         >
           {searchQuery !== "" && // Only render when there's a search query
             products.map((product, i) => (
@@ -73,7 +73,7 @@ const Shoppage = ({ searchQuery }) => {
                   <Card.Body>
                     <div className="position-relative">
                       {/* Display "Sale" button if the product is on sale */}
-                      {product.isFeatured && (
+                      {product.isSale && (
                         <button
                           className="sale-button rounded-3 p-2"
                           style={{

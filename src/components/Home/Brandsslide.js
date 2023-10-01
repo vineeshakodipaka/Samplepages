@@ -120,6 +120,8 @@ const Brandsslide = () => {
     dispatch(fetchBrands());
   }, [dispatch]);
 
+  const prodta = brandsData.filter((pro) => pro.isPartner);
+
   return (
     <div className="brandsliding">
       {/* <Container className="brandspage2 pb-5 pt-5">
@@ -146,7 +148,7 @@ const Brandsslide = () => {
         <Container className="mt-2">
           <Row className="px-xl-5 mx-lg-5 mx-4 pt-3 pb-3">
             <Slider {...settings}>
-              {brandsData.map((brand) => (
+              {prodta.map((brand) => (
                 <Col key={brand.Brand_id}>
                   <Card className=" mt-2 mb-2 mx-lg-5">
                     <center>
