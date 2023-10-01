@@ -25,18 +25,22 @@ const Bottombar = () => {
           {/* Home link */}
           <Link
             to="/"
-            className={`b-link px-lg-3 ${activeButton === 0 ? "active" : ""}`}
+            className={`b-link px-lg-3  rounded-3 p-2 ${
+              activeButton === 0 ? "active" : ""
+            }`}
             onMouseEnter={() => setActiveButton(0)}
             style={{ color: "black", textDecoration: "none" }}
           >
             <AiFillHome size={20} color="#652700" />
-            Home
+            <span > Home</span>
           </Link>
 
           {/* User link */}
           <Link
             to="/contact"
-            className={`b-link ${activeButton === 1 ? "active" : ""}`}
+            className={`b-link  rounded-3  p-2 ${
+              activeButton === 1 ? "active" : ""
+            }`}
             onMouseEnter={() => setActiveButton(1)}
             style={{ color: "black", textDecoration: "none" }}
           >
@@ -46,7 +50,9 @@ const Bottombar = () => {
           {/* Cart link */}
           <Link
             to="/cart"
-            className={`b-link ${activeButton === 2 ? "active" : ""}`}
+            className={`b-link  rounded-3 p-2 ${
+              activeButton === 2 ? "active" : ""
+            }`}
             onMouseEnter={() => setActiveButton(2)}
             style={{ color: "black", textDecoration: "none" }}
           >
@@ -64,7 +70,9 @@ const Bottombar = () => {
           {/* Message link */}
           <Link
             to="/"
-            className={`b-link ${activeButton === 3 ? "active" : ""}`}
+            className={`b-link  rounded-3 p-2 ${
+              activeButton === 3 ? "active" : ""
+            }`}
             onMouseEnter={() => setActiveButton(3)}
             style={{ color: "black", textDecoration: "none" }}
           >

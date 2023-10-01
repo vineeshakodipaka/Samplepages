@@ -290,16 +290,15 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-        </div>
-        <div>
-          <ul className="navbar-nav ms-xl-3 ">
-            <li className="nav-item px-xl-2">
+          <ul className="navbar-nav ms-auto justify-content-end ">
+            <li className="nav-item ">
               <Link to="/login" className="nav-link">
                 Login
               </Link>
             </li>
           </ul>
         </div>
+        <div></div>
       </div>
     </nav>
   );

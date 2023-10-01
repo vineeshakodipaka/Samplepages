@@ -101,6 +101,7 @@ import { Col, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../AuthContext "; // Import the useAuth hook
+import Cookies from "js-cookie";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -109,12 +110,18 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
-  const { isAuthenticated, login, logout } = useAuth(); // Access authentication state and functions
+ const { isAuthenticated, login, logout } = useAuth(); // Access authentication state and functions
 
-  const changeHandler = (e) => {
-    const { name, value } = e.target;
-    setLoginData({ ...loginData, [name]: value });
-  };
+ const changeHandler = (e) => {
+   const { name, value } = e.target;
+   setLoginData({ ...loginData, [name]: value });
+ };
+
+ const handleLogout = () => {
+   // Remove the user ID cookie and log the user out
+   Cookies.remove("userId");
+   logout();
+ };
 
  const submitHandler = async (e) => {
    e.preventDefault();
@@ -131,9 +138,11 @@ const Login = () => {
      );
 
      if (response.data.message === "Login successful") {
-       // Login successful, redirect to the home page
+       // Login successful, set the user ID in cookies and log in
+       const userId = response.data.user.User_ID;
+       Cookies.set("userId", userId);
        login(); // Call the login function to set isAuthenticated to true
-       navigate("/blog"); // Redirect to the /blog page
+       navigate("/blog");
      } else {
        // Login failed, display an error message
        alert("Login failed. Please check your credentials.");
@@ -151,6 +160,7 @@ const Login = () => {
       <h4>E n t e r p r i s e s</h4>
       <Row className="mt-5 pt-lg-5">
         <h3 className="loginaccount">Login To Your Account</h3>
+
         <Form className="loginform" onSubmit={submitHandler}>
           <Row className="justify-content-center mt-3">
             <Form.Group as={Col} md="4">
@@ -177,13 +187,7 @@ const Login = () => {
               />
             </Form.Group>
           </Row>
-          {isAuthenticated ? ( // Display the logout button if authenticated
-            <Row className="justify-content-center mt-4">
-              <button className="rounded-4 p-3 px-5 mt-2" onClick={logout}>
-                Logout
-              </button>
-            </Row>
-          ) : null}
+
           <Row className="mt-lg-5 pt-3">
             <Link to="/forgotpassword" className="forgotlink fw-bold">
               Forgot Your Password?
@@ -193,6 +197,11 @@ const Login = () => {
             </Link>
           </Row>
           <button className="rounded-4 p-3 px-5 mt-5">Login</button>
+          {isAuthenticated ? (
+            <button className="rounded-4 p-3 px-5 mt-2" onClick={handleLogout}>
+              Logout
+            </button>
+          ) : null}
         </Form>
       </Row>
     </div>

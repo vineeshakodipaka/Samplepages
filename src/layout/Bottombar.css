@@ -2,14 +2,14 @@
 
 /* Style for the active link */
 .bottompage .b-link.active {
-    background-color: #652700;
+    background-color: #eae6dc;
     color: white;
     /* Text color for the active link */
 }
 /* Bottombar.css */
 /* Add these styles to highlight active buttons */
 .bottompage .active {
-    background-color: #652700;
+    background-color: #eae6dc;
     /* Add any other styles you want for active buttons */
 }
 

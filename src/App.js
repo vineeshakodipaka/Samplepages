@@ -23,10 +23,14 @@ import Signup from "./components/Login&signup/Signup";
 import SubcategoryDetails from "./components/Brandspage/SubcategoryDetails";
 import BrandDetails from "./components/Brandspage/BrandDetails";
 import Subcatdropdown from "./components/Brandspage/Subcatdropdown";
-import { useAuth } from './AuthContext '; // Import the AuthProvider from your context file
+import Cookies from "js-cookie"; // Import js-cookie
+import { useAuth } from "./AuthContext "; // Import the AuthProvider from your context file
 const App = () => {
   const { isAuthenticated } = useAuth(); // Access authentication status
 
+  // Check if the userId cookie is present to determine authentication
+  const userId = Cookies.get("userId");
+  const isUserAuthenticated = isAuthenticated || !!userId;
 
   return (
     <div className="app">
@@ -56,16 +60,13 @@ const App = () => {
           path="/subcatdropdown/:subcatdrop"
           element={<Subcatdropdown />}
         />
-
-
-        {isAuthenticated ? ( // Render the /blog route only if authenticated
+        {isUserAuthenticated ? (
+          // Render the /blog route only if authenticated
           <Route path="/blog" element={<Blogpage />} />
         ) : (
           // Redirect to the home page if not authenticated
           <Route path="/blog" element={<Navigate to="/" replace />} />
         )}
-
-
       </Routes>
       <Bottombar />
       <Footer />

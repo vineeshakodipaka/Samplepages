@@ -36,3 +36,8 @@ margin-top: 9px;
   border: none !important;
   color: #000 !important;
 }
+.headerbar .navbar-toggler,
+.headerbar .navbar-toggler:focus {
+  border: none !important;
+  outline: none !important;
+}
