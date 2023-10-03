@@ -41,3 +41,6 @@ margin-top: 9px;
   border: none !important;
   outline: none !important;
 }
+.headerbar .btn-group .dropdown-menu{
+  inset: -30px auto auto 100px !important;
+}

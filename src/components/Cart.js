@@ -7,6 +7,7 @@ import {
   removeFromCart,
 } from "../actions"; // Import the actions
 import "./Cart.css";
+import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
   const { totalQuantity, totalPrice } = useSelector((state) => state.cart);
@@ -25,6 +26,10 @@ const Cart = () => {
     }
   };
 
+  const navigate = useNavigate();
+  const handlecheck = () => {
+    navigate("/checkout");
+  };
   return (
     <div className="container cartpage">
       {cartItems.length === 0 ? (
@@ -39,12 +44,12 @@ const Cart = () => {
             className="g-4 cardsrow pb-md-5 mb-md-5  px-md-4 mx-md-5"
           >
             {cartItems.map((product, i) => (
-              <Col key={product.Product_id}>
+              <Col>
                 <Card className="rounded-5 pt-1 pb-1 shopcards">
                   <Card.Body>
                     <div className="position-relative">
                       {/* Display "Sale" button if the product is on sale */}
-                      {product.isFeatured && (
+                      {/* {product.isFeatured && ( */}
                         <button
                           className="sale-button rounded-3 p-2"
                           style={{
@@ -58,7 +63,7 @@ const Cart = () => {
                         >
                           Sale
                         </button>
-                      )}
+                      {/* )} */}
                       {/* Handle clicking on a product card to navigate */}
                       <Row>
                         <div className="cardimg">
@@ -126,13 +131,14 @@ const Cart = () => {
                   </Card.Body>
                 </Card>
               </Col>
-            ))}
+            )
+            )}
           </Row>
           <div className="px-md-4 mx-md-5 row">
             <h5>Price Details:</h5>
             <p> ₹{totalPrice}</p>
           </div>
-
+          <button onClick={handlecheck}>Checkout</button>
           {/* Display quantity of each item here */}
           {/* <div className="item-quantities">
             {cartItems.map((product) => (

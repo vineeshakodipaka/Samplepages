@@ -18,37 +18,17 @@ import {
   ButtonGroup,
   Button,
 } from "react-bootstrap";
-const Navbar = () => {
+const Navbar = ({ handleShow2 }) => {
   const { totalQuantity } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchExpanded, setSearchExpanded] = useState(false);
 
-  // const [brandsData, setBrandsData] = useState([]);
-  // const [selectedBrand, setSelectedBrand] = useState("");
-  // const [selectedSubcat, setSelectedSubcat] = useState("");
+
   const [isBrandDropdownOpen, setIsBrandDropdownOpen] = useState(false); // Track brand dropdown state
   const searchInputRef = React.useRef(null); // Reference to the search input element
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   // Fetch brand data from the API
-  //   fetch("https://paradox122.000webhostapp.com/_API/Brands.php")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       if (data.status) {
-  //         setBrandsData(data.brands);
-  //       }
-  //     })
-  //     .catch((error) => console.error("Error fetching data:", error));
-  // }, []);
 
-  // const handleBrandChange = (brand) => {
-  //   setSelectedBrand(brand.Brand_id);
-  //   setSelectedSubcat(""); // Clear sub-category when a brand is changed
-  // };
-  // const handleSubcatChange = (subcat) => {
-  //   setSelectedSubcat(subcat.Subcat_Name);
-  // };
 
   const brandsData = useSelector((state) => state.brands.brandsData);
   const selectedBrand = useSelector((state) => state.brands.selectedBrand);
@@ -112,14 +92,7 @@ const Navbar = () => {
     navigate("/brandspage");
   };
 
-  // const handleSearch = () => {
-  //   dispatch(searchProducts(searchQuery));
-  // };
 
-  // const clearSearch = () => {
-  //   dispatch(searchProducts('')); // Clear the search query
-  //   setSearchQuery(''); // Clear the local state
-  // };
 
   return (
     <nav className="navbar navbar-expand-lg navbar headerbar mt-lg-4 mb-lg-4">
@@ -292,13 +265,13 @@ const Navbar = () => {
           </ul>
           <ul className="navbar-nav ms-auto justify-content-end ">
             <li className="nav-item ">
-              <Link to="/login" className="nav-link">
+              <Link to="/login" onClick={handleShow2} className="nav-link">
                 Login
               </Link>
             </li>
           </ul>
         </div>
-        <div></div>
+      
       </div>
     </nav>
   );

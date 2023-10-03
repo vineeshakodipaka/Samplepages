@@ -35,33 +35,3 @@ const BrandDetails = () => {
 export default BrandDetails;
 
 
-
-
-
-// import React from "react";
-// import { useParams } from "react-router-dom";
-// import { useSelector } from "react-redux";
-// import { Card } from "react-bootstrap";
-
-// const BrandDetails = () => {
-//   const { brandId } = useParams();
-//   const brandsData = useSelector((state) => state.brands.brandsData);
-//   const selectedBrand = brandsData.find((brand) => brand.Brand_id === brandId);
-
-//   if (!selectedBrand) {
-//     return <div>Brand not found</div>;
-//   }
-
-//   return (
-//     <div className="container">
-//       <Card>
-//         <Card.Body>
-//           <Card.Title>{selectedBrand.Brand_Name}</Card.Title>
-//           <Card.Text>Description: {selectedBrand.Description}</Card.Text>
-//         </Card.Body>
-//       </Card>
-//     </div>
-//   );
-// };
-
-// export default BrandDetails;
